@@ -11,19 +11,19 @@ from datetime import datetime
 // Function to compress logs
 def compress_logs(log_dir, archive_dir, log_file):
     try:
-        # Create archive directory if it doesn't exist
+        // Create archive directory if it doesn't exist
         os.makedirs(archive_dir, exist_ok=True)
 
-        # Generate the archive filename with timestamp
+        // Generate the archive filename with timestamp
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         archive_name = f"logs_{timestamp}.tar.gz"
         archive_path = os.path.join(archive_dir, archive_name)
 
-        # Compress logs into tar.gz
+        // Compress logs into tar.gz
         with tarfile.open(archive_path, "w:gz") as tar:
             tar.add(log_dir, arcname=os.path.basename(log_dir))
 
-        # Log the archiving activity
+        // Log the archiving activity
         with open(log_file, "a") as log:
             log.write(f"[{datetime.now()}] Archived logs to {archive_path}\n")
 
