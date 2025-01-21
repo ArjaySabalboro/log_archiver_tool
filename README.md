@@ -8,7 +8,7 @@ import tarfile
 import argparse
 from datetime import datetime
 
-# Function to compress logs
+// Function to compress logs
 def compress_logs(log_dir, archive_dir, log_file):
     try:
         # Create archive directory if it doesn't exist
@@ -31,7 +31,7 @@ def compress_logs(log_dir, archive_dir, log_file):
     except Exception as e:
         print(f"Error: {e}")
 
-# Main function to parse arguments and invoke compression
+// Main function to parse arguments and invoke compression
 def main():
     parser = argparse.ArgumentParser(description="Log Archiver Tool")
     parser.add_argument("log_directory", help="Path to the directory containing logs to archive")
