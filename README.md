@@ -1,58 +1,51 @@
-// log_archiver_tool
+# Log Archiver Tool
 
-// Log Archiver Tool
+## Overview
+The Log Archiver Tool is a simple CLI utility that compresses log files into a `.tar.gz` archive and stores them in a specified directory. This helps in cleaning up old logs while preserving them in a compressed format for future reference.
 
-!/usr/bin/env python3
+## Features
+- Accepts the log directory as an argument
+- Compresses log files into a `.tar.gz` format
+- Stores the compressed logs in a specified archive directory
+- Logs the date and time of the archive operation
 
-import os
-import tarfile
-import argparse
-from datetime import datetime
+## Prerequisites
+- Python 3.x installed
 
-// Function to compress logs
-def compress_logs(log_dir, archive_dir, log_file):
-    try:
-        // Create archive directory if it doesn't exist
-        os.makedirs(archive_dir, exist_ok=True)
+## Installation
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/ArjaySabalboro/log-archiver.git
+   cd log-archiver
+   ```
+2. Make the script executable:
+   ```bash
+   chmod +x log_archiver.py
+   ```
 
-        // Generate the archive filename with timestamp
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        archive_name = f"logs_{timestamp}.tar.gz"
-        archive_path = os.path.join(archive_dir, archive_name)
+## Usage
+Run the script using the command line:
+```bash
+./log_archiver.py /path/to/log_directory --archive-dir /path/to/archive_directory --log-file /path/to/log_file.log
+```
 
-        // Compress logs into tar.gz
-        with tarfile.open(archive_path, "w:gz") as tar:
-            tar.add(log_dir, arcname=os.path.basename(log_dir))
+### Arguments:
+- `log_directory` (required): Path to the directory containing logs to archive.
+- `--archive-dir` (optional): Directory to store archived logs (default: `archives`).
+- `--log-file` (optional): Path to the log file for tracking archive operations (default: `archiver.log`).
 
-        // Log the archiving activity
-        with open(log_file, "a") as log:
-            log.write(f"[{datetime.now()}] Archived logs to {archive_path}\n")
+### Example Usage:
+```bash
+./log_archiver.py /var/logs --archive-dir /backup/logs --log-file /var/logs/archiver.log
+```
 
-        print(f"Logs successfully archived to {archive_path}")
-    except Exception as e:
-        print(f"Error: {e}")
+## Error Handling
+- If the specified log directory does not exist, the script will return an error.
+- If the provided log file path is a directory instead of a file, the script will notify the user.
 
-// Main function to parse arguments and invoke compression
-def main():
-    parser = argparse.ArgumentParser(description="Log Archiver Tool")
-    parser.add_argument("log_directory", help="Path to the directory containing logs to archive")
-    parser.add_argument("--archive-dir", default="archives", help="Directory to store archived lo>
-    parser.add_argument("--log-file", default="archiver.log", help="Path to the log file (default>
-    
-    args = parser.parse_args()
-       log_dir = args.log_directory
-    archive_dir = args.archive_dir
-    log_file = args.log_file
+## License
+This project is licensed under the MIT License.
 
-    if not os.path.exists(log_dir):
-        print(f"Error: The specified log directory '{log_dir}' does not exist.")
-        return
-
-    compress_logs(log_dir, archive_dir, log_file)
-
-if __name__ == "__main__":
-    main()
-
-
-// https://roadmap.sh/projects/log-archive-tool
+## Contributing
+Feel free to submit issues or pull requests to improve the tool.
 
