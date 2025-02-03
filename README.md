@@ -15,18 +15,18 @@ The Log Archiver Tool is a simple CLI utility that compresses log files into a `
 ## Installation
 1. Clone this repository:
    ```bash
-   git clone https://github.com/ArjaySabalboro/log-archiver.git
-   cd log-archiver
+   git clone https://github.com/ArjaySabalboro/log_archiver_tool.git
+   cd log_archiver_tool
    ```
 2. Make the script executable:
    ```bash
-   chmod +x log_archiver.py
+   chmod +x log_archiver_tool.py
    ```
 
 ## Usage
 Run the script using the command line:
 ```bash
-./log_archiver.py /path/to/log_directory --archive-dir /path/to/archive_directory --log-file /path/to/log_file.log
+./log_archiver_tool.py /path/to/log_directory --archive-dir /path/to/archive_directory --log-file /path/to/log_file.log
 ```
 
 ### Arguments:
@@ -36,7 +36,7 @@ Run the script using the command line:
 
 ### Example Usage:
 ```bash
-./log_archiver.py /var/logs --archive-dir /backup/logs --log-file /var/logs/archiver.log
+./log_archiver_tool.py /var/logs --archive-dir /backup/logs --log-file /var/logs/archiver.log
 ```
 
 ## Error Handling
